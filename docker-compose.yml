@@ -33,20 +33,9 @@ services:
     ports:
       - 80:80
       - 9999:9999
-  liferay-staging:
-    build: liferay-staging
-    container_name: liferay-staging
-    networks: 
-      - network-liferay-tomcat
-    ports: 
-      - 8085:8080
-      - 127.0.0.1:51311:11311
-    volumes:
-      - volume-liferay-staging-data:/opt/liferay/data
-      - volume-liferay-staging-work:/opt/liferay/work
-  liferay-tomcat-1:
+  liferay-tomcat:
     build: liferay-tomcat
-    container_name: liferay-tomcat-1
+    container_name: liferay-tomcat
     depends_on:
 #      - apacheds
 #      - elasticsearch
@@ -58,20 +47,7 @@ services:
       - 127.0.0.1:11311:11311
     volumes:
       - volume-liferay-tomcat-data:/opt/liferay/data
-      - volume-liferay-tomcat-1-work:/opt/liferay/work
-#  liferay-tomcat-2:
-#    build: liferay-tomcat
-#    container_name: liferay-tomcat-2
-#    depends_on:
-#      - mysql
-#    networks: 
-#      - network-liferay-tomcat
-#    ports: 
-#      - 8082:8080
-#      - 127.0.0.1:21311:11311
-#    volumes:
-#      - volume-liferay-tomcat-data:/opt/liferay/data
-#      - volume-liferay-tomcat-2-work:/opt/liferay/work
+      - volume-liferay-tomcat-work:/opt/liferay/work
   mysql:
     build: mysql
     container_name: mysql
@@ -89,9 +65,6 @@ networks:
 volumes:
   volume-apacheds:
   volume-elasticsearch:
-  volume-liferay-staging-data:
-  volume-liferay-staging-work:
   volume-liferay-tomcat-data:
-  volume-liferay-tomcat-1-work:
-  volume-liferay-tomcat-2-work:
+  volume-liferay-tomcat-work:
   volume-mysql:
