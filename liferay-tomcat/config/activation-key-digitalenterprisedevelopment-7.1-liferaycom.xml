@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<license>
+	<account-name>Liferay.com</account-name>
+	<owner>Liferay.com</owner>
+	<description>Devops Training</description>
+	<product-name>Digital Enterprise Development</product-name>
+	<product-version>7.1</product-version>
+	<license-name>Digital Enterprise Development (Cluster)</license-name>
+	<license-type>developer-cluster</license-type>
+	<license-version>6</license-version>
+	<start-date>Friday, August 9, 2019 8:10:57 AM GMT</start-date>
+	<expiration-date>Saturday, August 8, 2020 8:10:57 AM GMT</expiration-date>
+	<max-http-sessions>5</max-http-sessions>
+	<key>a87d4a3d826e8cf49fd116c2efeea4b4671d55fd033dd00d0543950206d0f84abeff7a424b803051f7a33c87c67fc535a85cc0710bd7af05134dbc0c1357e36b39bf7f9e8c3acd6b7b15cef52b4d5057bede6092d7dfc5255790c036971923c718a57e577a11b3d5caae6a733780d57271741979c152ee3a36305d94c617a2dba95033a7</key>
+</license>
