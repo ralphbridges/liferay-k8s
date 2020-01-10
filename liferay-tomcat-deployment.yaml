@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: liferay
+  name: liferay-tomcat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: liferay
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 ()
+      creationTimestamp: null
+      labels:
+        app: liferay
+        io.kompose.service: liferay-tomcat
+    spec:
+      containers:
+      - image: liferay-tomcat
+        name: liferay-tomcat
+        ports:
+        - containerPort: 8080
+        - containerPort: 11311
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/liferay/data
+          name: volume-liferay-tomcat-data
+        - mountPath: /opt/liferay/work
+          name: volume-liferay-tomcat-work
+      restartPolicy: Always
+      volumes:
+      - name: volume-liferay-tomcat-data
+        persistentVolumeClaim:
+          claimName: volume-liferay-tomcat-data
+      - name: volume-liferay-tomcat-work
+        persistentVolumeClaim:
+          claimName: volume-liferay-tomcat-work
+status: {}

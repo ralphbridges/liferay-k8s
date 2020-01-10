@@ -1,44 +1,10 @@
 version: "3.7"
 services:
-  apacheds:
-    build: apacheds
-    container_name: apacheds
-    networks: 
-      - network-liferay-tomcat
-    ports: 
-      - 10389:10389
-    volumes:
-      - volume-apacheds:/opt/liferay/apacheds-2.0.0.AM25/instances
-  elasticsearch:
-    build: elasticsearch
-    container_name: elasticsearch
-    environment: 
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-    networks:
-      - network-liferay-tomcat
-    ports:
-      - 9200:9200
-      - 9300:9300
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - volume-elasticsearch:/usr/share/elasticsearch/data
-  haproxy:
-    build: haproxy
-    container_name: haproxy
-    networks:
-      - network-liferay-tomcat
-    ports:
-      - 80:80
-      - 9999:9999
   liferay-tomcat:
+    image: liferay-tomcat
     build: liferay-tomcat
     container_name: liferay-tomcat
     depends_on:
-#      - apacheds
-#      - elasticsearch
       - mysql
     networks: 
       - network-liferay-tomcat
@@ -49,6 +15,7 @@ services:
       - volume-liferay-tomcat-data:/opt/liferay/data
       - volume-liferay-tomcat-work:/opt/liferay/work
   mysql:
+    image: mysql
     build: mysql
     container_name: mysql
     networks:
@@ -63,8 +30,6 @@ networks:
   network-liferay-tomcat:
     name: network-liferay-tomcat
 volumes:
-  volume-apacheds:
-  volume-elasticsearch:
   volume-liferay-tomcat-data:
   volume-liferay-tomcat-work:
   volume-mysql:
